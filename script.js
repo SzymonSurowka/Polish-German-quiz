@@ -102,3 +102,23 @@ function showSummary() {
 
 // start od pierwszego słowa
 window.onload = nextWord;
+
+let activeInput = null;
+
+// kiedy użytkownik kliknie w input, zapamiętujemy go jako aktywny
+document.querySelectorAll("input[type='text']").forEach(input => {
+  input.addEventListener("focus", () => {
+    activeInput = input;
+  });
+});
+
+// obsługa kliknięcia w literkę
+document.querySelectorAll(".char-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    if (activeInput) {
+      activeInput.value += btn.innerText;
+      activeInput.focus(); // żeby nie tracić kursora
+    }
+  });
+});
+
